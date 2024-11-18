@@ -1,4 +1,5 @@
 <template>
+  <div>
   <form @submit.prevent="ajouterTache">
     <fieldset role="group">
     <input type="text" placeholder="Ajouter une tache" v-model="newTodo">
@@ -18,6 +19,7 @@
       <input type="checkbox" v-model="hideCompleted"> Masquer les taches complétées
     </label>
   </div>
+</div>
 </template>
 
 <script setup>
@@ -55,6 +57,9 @@ const sortedTodos=()=>{
 </script>
 
 <style>
+template{
+  display: block;
+}
 .completed{
   text-decoration: line-through;
 }
