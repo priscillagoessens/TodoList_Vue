@@ -1,8 +1,11 @@
 <template>
   <div>
-    <Button>
-      <strong>Demo</strong> Button avec balise slot
-    </Button>
+    <Layout>
+      <template v-slot:header>En tete</template> <!--v-slot:header peut etre remplacer par <template #header>-->
+      <template v-slot:aside>Aside</template>
+      <template v-slot:main>Main</template>
+      <template v-slot:footer>Footer</template>
+    </Layout>
     <form @submit.prevent="ajouterTache">
       <fieldset role="group">
       <input type="text" placeholder="Ajouter une tache" v-model="newTodo">
@@ -33,6 +36,7 @@
 import {computed, ref} from 'vue';
 import Checkbox from './Checkbox.vue';
 import Button from './Button.vue';
+import Layout from './Layout.vue';
 
 const newTodo = ref('')
 const todos = ref([{
@@ -75,3 +79,13 @@ const remainingTodos = computed(()=>{
   text-decoration: line-through;
 }
 </style>
+
+<!--
+Decomposition de composnat:
+Il faut importer le composant 
+Ensuite le mettre dans le html 
+On peut definir de props => parametre d'entré de fonction qui permet d'envoyé de l'information au compposant
+On peut emettre des events grace au emits
+Pour un systeme qui doit comporter les deux elements ce sera le defineModel
+Si le composant a des enfants on utilise le systeme de slot
+-->

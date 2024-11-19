@@ -1,9 +1,17 @@
 <template>
     <div class="layout">
-        <header></header>
-        <aside></aside>
-        <main></main>
-        <footer></footer>
+        <header v-if="$slots.header"> <!--Affichera le header seulemnt si il y a un slot-->
+            <slot name="header"></slot>
+        </header>
+        <aside>
+            <slot name="aside"></slot>
+        </aside>
+        <main>
+            <slot name="main"></slot>
+        </main>
+        <footer>
+            <slot name="footer"></slot>
+        </footer>
     </div>
 </template>
 
