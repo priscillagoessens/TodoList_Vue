@@ -1,23 +1,25 @@
 <template>
   <input type="text" v-model="page.title">
+  Temps écoulé: {{  time }}
+  <button @click="reset">Remttre a zero</button>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watchEffect } from 'vue'
+import { useTimer } from './composable/useTimer';
+
+
+const {time, reset }= useTimer() //fonction personnalisé
 
 const page = ref({
   title:''
 })
 
-watch(()=>page.value.title,(newValue, oldValue)=>{ //watch(()=>page.value.title, utilisation d'un getter : fonction qui renvoie la valeur a observer 
-  document.title = newValue
-}) // {immediate:true} permet d'avoir le resultat au chargement initial de la page
-
+watchEffect(()=>{
+  document.title = page.value.title
+})
 </script>
 
-<style>
-
-</style>
 
 <!--
 Les watcher servent a observer les changeement de valeur de maniere reactive et faire de la logique en fonction de ce changement
